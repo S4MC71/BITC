@@ -26,7 +26,7 @@ export const programs: Program[] = [
     totalCredits: 136,
     description:
       "A comprehensive program covering management, marketing, finance, and entrepreneurship to develop future business leaders.",
-    icon: "💼",
+    icon: "Briefcase",
     highlights: ["Case-Study Based Learning", "Industrial Visits", "Internship Program", "Live Project"],
     syllabus: [
       {
@@ -59,7 +59,7 @@ export const programs: Program[] = [
     totalCredits: 148,
     description:
       "A rigorous technical program in programming, algorithms, databases, networks, and AI for the digital age.",
-    icon: "💻",
+    icon: "Monitor",
     highlights: ["Modern Computer Labs", "Hackathons & Competitions", "Industry Mentorship", "AI/ML Electives"],
     syllabus: [
       {
@@ -83,7 +83,7 @@ export const programs: Program[] = [
     totalCredits: 72,
     description:
       "A professional law degree program covering constitutional law, contract law, criminal law, and legal procedures.",
-    icon: "⚖️",
+    icon: "Scale",
     highlights: ["Moot Court Practice", "Legal Aid Clinic", "Guest Lectures by Judges", "Bar Council Affiliation"],
     syllabus: [
       {
@@ -106,7 +106,7 @@ export const programs: Program[] = [
     totalCredits: 60,
     description:
       "An advanced management program for working professionals and graduates seeking leadership and strategic skills.",
-    icon: "🎓",
+    icon: "GraduationCap",
     highlights: ["Executive Leadership Track", "Global Business Perspective", "Capstone Project", "Alumni Network"],
     syllabus: [],
   },
@@ -119,7 +119,7 @@ export const programs: Program[] = [
     totalCredits: 36,
     description:
       "Designed for practising teachers and education professionals to advance their pedagogical skills and research.",
-    icon: "📚",
+    icon: "BookOpen",
     highlights: ["Classroom Research", "Curriculum Design", "Educational Psychology", "Teaching Practicum"],
     syllabus: [],
   },

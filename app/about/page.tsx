@@ -5,7 +5,7 @@ import { Eye, Target, Heart, Shield, Clock, Award } from "lucide-react";
 export const metadata: Metadata = {
   title: "About BITC — Vision, Mission, Values & History",
   description:
-    "Learn about Bangladesh Institute of Technology & Commerce (BITC) — our founding story, vision, mission, core values, and governing body.",
+    "Learn about Barisal Information Technology College (BITC) — our founding story, vision, mission, core values, and governing body.",
 };
 
 const values = [

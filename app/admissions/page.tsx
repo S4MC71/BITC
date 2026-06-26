@@ -28,7 +28,7 @@ const feesData = [
 const steps = [
   { step: "01", title: "Check Eligibility", desc: "Review the eligibility criteria for your chosen program." },
   { step: "02", title: "Visit NU Portal", desc: "Go to the National University admission portal and fill in your details." },
-  { step: "03", title: "Select BITC", desc: "Choose Bangladesh Institute of Technology & Commerce (BITC) as your preferred college." },
+  { step: "03", title: "Select BITC", desc: "Choose Barisal Information Technology College (BITC) as your preferred college." },
   { step: "04", title: "Pay Admission Fee", desc: "Pay the required fees online or at designated bank branches." },
   { step: "05", title: "Submit Documents", desc: "Submit certified copies of academic certificates to the admission office." },
   { step: "06", title: "Confirm Admission", desc: "Receive your admission confirmation and student ID from BITC." },

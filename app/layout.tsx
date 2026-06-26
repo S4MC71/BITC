@@ -6,23 +6,23 @@ import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "BITC — Bangladesh Institute of Technology & Commerce",
+    default: "BITC — Barisal Information Technology College",
     template: "%s | BITC",
   },
   description:
-    "Bangladesh Institute of Technology & Commerce (BITC) is a premier National University-affiliated institution offering BBA, CSE, LLB, MBA, and M.Ed programs.",
+    "Barisal Information Technology College (BITC) is a premier National University-affiliated institution offering BBA, CSE, LLB, MBA, and M.Ed programs.",
   keywords: [
     "BITC",
-    "Bangladesh Institute of Technology Commerce",
-    "National University college",
-    "BBA college Bangladesh",
-    "CSE college Bangladesh",
+    "Barisal Information Technology College",
+    "National University college Barisal",
+    "BBA college Barisal",
+    "CSE college Barisal",
     "LLB college",
   ],
   openGraph: {
     type: "website",
     locale: "en_BD",
-    siteName: "BITC — Bangladesh Institute of Technology & Commerce",
+    siteName: "BITC — Barisal Information Technology College",
   },
 };
 

@@ -2,9 +2,18 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Briefcase, Monitor, Scale, GraduationCap, BookOpen, type LucideIcon } from "lucide-react";
 import { programs } from "@/data/programs";
 import SectionHeader from "@/components/ui/SectionHeader";
+
+// Map icon string name → Lucide component
+const iconMap: Record<string, LucideIcon> = {
+  Briefcase,
+  Monitor,
+  Scale,
+  GraduationCap,
+  BookOpen,
+};
 
 // BITC-themed faculty colors using brand palette
 const facultyColors: Record<string, { bg: string; accent: string; text: string }> = {
@@ -27,6 +36,7 @@ export default function ProgramsGrid() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {programs.map((program, i) => {
             const colors = facultyColors[program.faculty] || { bg: "#004D2C", accent: "#D4A820", text: "#D4A820" };
+            const Icon = iconMap[program.icon] ?? Briefcase;
 
             return (
               <motion.div
@@ -45,7 +55,13 @@ export default function ProgramsGrid() {
                       background: `linear-gradient(145deg, ${colors.bg} 0%, ${colors.bg}cc 100%)`,
                     }}
                   >
-                    <div className="text-5xl mb-4">{program.icon}</div>
+                    {/* SVG Icon instead of emoji */}
+                    <div
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-lg"
+                      style={{ backgroundColor: `${colors.accent}22`, border: `1.5px solid ${colors.accent}55` }}
+                    >
+                      <Icon size={32} style={{ color: colors.accent }} />
+                    </div>
                     <h3 className="font-display text-2xl font-bold text-white text-center mb-2">
                       {program.shortName}
                     </h3>
@@ -98,7 +114,7 @@ export default function ProgramsGrid() {
             );
           })}
 
-          {/* CTA card */}
+          {/* CTA card — SVG icon instead of emoji */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +122,9 @@ export default function ProgramsGrid() {
             transition={{ duration: 0.5, delay: programs.length * 0.08 }}
             className="h-72 rounded-2xl border-2 border-dashed border-[#006B3C]/30 flex flex-col items-center justify-center p-8 bg-[#e8f5ee] hover:bg-[#006B3C]/10 transition-colors duration-300 group"
           >
-            <div className="text-4xl mb-4">🎓</div>
+            <div className="w-16 h-16 rounded-2xl bg-[#006B3C]/10 border border-[#006B3C]/20 flex items-center justify-center mb-4">
+              <GraduationCap size={32} className="text-[#006B3C]" />
+            </div>
             <h3 className="font-display text-lg font-bold text-[#004D2C] text-center mb-3">
               Ready to Join Us?
             </h3>

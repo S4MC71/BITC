@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
+import ImageSlider from "@/components/home/ImageSlider";
 import AuthorityMessage from "@/components/home/AuthorityMessage";
 import AboutSnapshot from "@/components/home/AboutSnapshot";
 import StatsCounter from "@/components/home/StatsCounter";
@@ -9,9 +10,9 @@ import EventsNews from "@/components/home/EventsNews";
 import Testimonials from "@/components/home/Testimonials";
 
 export const metadata: Metadata = {
-  title: "BITC — Bangladesh Institute of Technology & Commerce | Home",
+  title: "BITC — Barisal Information Technology College | Home",
   description:
-    "Welcome to BITC — a premier National University-affiliated institute offering BBA, CSE, LLB, MBA, and M.Ed programs with world-class faculty and modern facilities.",
+    "Welcome to BITC — Barisal Information Technology College, a premier National University-affiliated institute offering BBA, CSE, LLB, MBA, and M.Ed programs with world-class faculty and modern facilities.",
 };
 
 export default function HomePage() {
@@ -19,6 +20,9 @@ export default function HomePage() {
     <>
       {/* Hero — Note: NoticeTicker is now sticky in layout.tsx */}
       <HeroSection />
+
+      {/* Campus Gallery Slider */}
+      <ImageSlider />
 
       {/* Message from Principal */}
       <AuthorityMessage />

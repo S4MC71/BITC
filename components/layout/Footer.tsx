@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
-  GraduationCap,
   Phone,
   Mail,
   MapPin,
@@ -46,21 +46,27 @@ export default function Footer() {
             {/* Column 1: Brand */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-[#D4A820] flex items-center justify-center flex-shrink-0">
-                  <GraduationCap size={24} className="text-[#022c16]" />
+                <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/images/Logo.png"
+                    alt="BITC Logo"
+                    width={44}
+                    height={44}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-display text-xl font-bold text-white leading-tight">
                     BITC
                   </div>
                   <div className="text-[10px] text-green-300 leading-tight">
-                    Bangladesh Institute of Technology &amp; Commerce
+                    Barisal Information Technology College
                   </div>
                 </div>
               </Link>
 
               <p className="text-green-300/80 text-sm leading-relaxed mb-5">
-                A premier National University–affiliated institution dedicated to academic
+                A premier National University–affiliated institution in Barisal dedicated to academic
                 excellence, professional development, and producing leaders for tomorrow.
               </p>
 
@@ -157,7 +163,7 @@ export default function Footer() {
                 <li className="flex items-start gap-3">
                   <MapPin size={16} className="text-[#D4A820] flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-green-300/80 leading-relaxed">
-                    123 College Road, Dhaka-1207<br />
+                    College Road, Barisal-8200<br />
                     Bangladesh
                   </span>
                 </li>
@@ -199,7 +205,7 @@ export default function Footer() {
       <div className="bg-[#050d18] text-green-600/70 text-xs py-4 px-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>
-            © {currentYear} Bangladesh Institute of Technology &amp; Commerce (BITC). All Rights Reserved.
+            © {currentYear} Barisal Information Technology College (BITC). All Rights Reserved.
           </p>
           <p>
             Affiliated with{" "}

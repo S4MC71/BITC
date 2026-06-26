@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import Image from "next/image";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function AuthorityMessage() {
@@ -23,33 +24,42 @@ export default function AuthorityMessage() {
 
               {/* Profile card */}
               <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#022c16] to-[#004D2C] p-8 text-white shadow-2xl">
-                {/* Avatar placeholder */}
-                <div className="w-32 h-32 rounded-2xl bg-[#D4A820]/20 border-2 border-[#D4A820]/40 flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl font-display font-bold text-[#D4A820]">
-                    AM
-                  </span>
+                {/* Principal Photo */}
+                <div className="w-36 h-36 rounded-2xl overflow-hidden border-2 border-[#D4A820]/60 mx-auto mb-6 shadow-lg">
+                  <Image
+                    src="/images/principal.jpg"
+                    alt="MD Anisur Rahman — Principal, BITC"
+                    width={144}
+                    height={144}
+                    className="w-full h-full object-cover object-top"
+                    priority
+                  />
                 </div>
 
                 <div className="text-center">
                   <h3 className="font-display text-xl font-bold text-white mb-1">
-                    Prof. Dr. Abdur Rahim
+                    MD Anisur Rahman
                   </h3>
                   <p className="text-[#F0D060] text-sm font-medium mb-1">
                     Principal
                   </p>
                   <p className="text-green-300/70 text-xs">
-                    Bangladesh Institute of Technology &amp; Commerce
+                    Barisal Information Technology College
                   </p>
                 </div>
 
                 {/* Separator */}
                 <div className="w-12 h-0.5 bg-[#D4A820]/50 mx-auto my-5" />
 
-                {/* Credentials */}
-                <div className="space-y-1.5 text-center">
-                  {["PhD (Education), University of Dhaka", "M.Phil (Management)", "30+ Years in Academia"].map((c) => (
-                    <p key={c} className="text-xs text-green-300/70">{c}</p>
-                  ))}
+                {/* Decorative credential badge */}
+                <div className="flex justify-center">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4A820]/15 border border-[#D4A820]/30">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A820" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                    <span className="text-xs text-[#F0D060] font-medium">Principal, BITC</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -75,8 +85,8 @@ export default function AuthorityMessage() {
               />
               <div className="pl-4 space-y-4">
                 <p className="text-[#5a6a60] leading-relaxed">
-                  It is my great privilege to welcome you to Bangladesh Institute of
-                  Technology &amp; Commerce — an institution that stands as a beacon of
+                  It is my great privilege to welcome you to Barisal Information
+                  Technology College — an institution that stands as a beacon of
                   academic excellence and holistic development.
                 </p>
                 <p className="text-[#5a6a60] leading-relaxed">

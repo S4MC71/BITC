@@ -46,7 +46,7 @@ export default function ContactPage() {
                   {
                     icon: MapPin,
                     title: "Address",
-                    lines: ["123 College Road", "Dhaka-1207, Bangladesh"],
+                    lines: ["College Road", "Barisal-8200, Bangladesh"],
                   },
                   {
                     icon: Phone,
@@ -82,7 +82,7 @@ export default function ContactPage() {
               <div className="rounded-2xl overflow-hidden border border-[#006B3C]/15 h-56 bg-[#e8f5ee] flex flex-col items-center justify-center">
                 <MapPin size={36} className="text-[#006B3C] mb-2" />
                 <p className="text-sm text-[#5a6a60] font-medium">Google Maps</p>
-                <p className="text-xs text-[#5a6a60]/70 mb-3">123 College Road, Dhaka-1207</p>
+                <p className="text-xs text-[#5a6a60]/70 mb-3">College Road, Barisal-8200</p>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
