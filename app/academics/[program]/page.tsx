@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, BookOpen, Award } from "lucide-react";
+import { 
+  ArrowLeft, 
+  Clock, 
+  BookOpen, 
+  Award, 
+  Check, 
+  Calendar, 
+  Languages,
+  BookOpenCheck,
+  Building2,
+  PhoneCall
+} from "lucide-react";
 import { programs } from "@/data/programs";
+import SyllabusAccordion from "./SyllabusAccordion";
 
 interface Props {
   params: Promise<{ program: string }>;
@@ -28,7 +40,7 @@ export default async function ProgramPage({ params }: Props) {
   if (!program) notFound();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-neutral-50/30">
       {/* Hero — dark green gradient */}
       <div
         className="py-24 text-white"
@@ -63,94 +75,173 @@ export default async function ProgramPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Details */}
+      {/* Main Details Grid */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Main content */}
-          <div className="lg:col-span-2">
-            <h2 className="font-display text-2xl font-bold text-[#004D2C] mb-4">
-              About This Program
-            </h2>
-            <p className="text-[#5a6a60] leading-relaxed mb-8">{program.description}</p>
-
-            {/* Highlights */}
-            <h2 className="font-display text-xl font-bold text-[#004D2C] mb-4">
-              Program Highlights
-            </h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-              {program.highlights.map((h) => (
-                <li key={h} className="flex items-center gap-2 text-sm text-[#5a6a60] bg-[#e8f5ee] rounded-xl px-4 py-2.5 border border-[#006B3C]/15">
-                  <span className="text-[#006B3C] font-bold">✓</span> {h}
-                </li>
-              ))}
-            </ul>
-
-            {/* Syllabus */}
-            {program.syllabus.length > 0 && (
-              <>
-                <h2 className="font-display text-xl font-bold text-[#004D2C] mb-6">
-                  Semester-wise Syllabus
+          
+          {/* Main Content Column */}
+          <div className="lg:col-span-2 space-y-10">
+            
+            {/* Section 1: Program Overview */}
+            <div className="bg-white border border-[#006B3C]/10 rounded-3xl p-6 sm:p-8 shadow-sm">
+              <div className="flex items-center gap-3 border-b border-[#006B3C]/10 pb-4 mb-5">
+                <BookOpenCheck className="text-[#006B3C]" size={22} />
+                <h2 className="font-display text-2xl font-bold text-[#004D2C]">
+                  Program Overview
                 </h2>
-                {program.syllabus.map((sem) => (
-                  <div key={sem.semester} className="mb-6">
-                    <h3 className="font-semibold text-[#004D2C] mb-3 text-base">
-                      Semester {sem.semester}
-                    </h3>
-                    <div className="rounded-xl overflow-hidden border border-[#006B3C]/15">
-                      <table className="w-full text-sm">
-                        <thead>
-                          <tr className="bg-[#004D2C] text-white">
-                            <th className="text-left px-4 py-2.5">Course Code</th>
-                            <th className="text-left px-4 py-2.5">Course Name</th>
-                            <th className="text-center px-4 py-2.5">Credits</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {sem.courses.map((course, i) => (
-                            <tr key={course.code} className={i % 2 === 0 ? "bg-white" : "bg-[#e8f5ee]"}>
-                              <td className="px-4 py-2.5 font-mono text-xs text-[#D4A820]">{course.code}</td>
-                              <td className="px-4 py-2.5 text-[#5a6a60]">{course.name}</td>
-                              <td className="px-4 py-2.5 text-center text-[#5a6a60]">{course.credits}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+              </div>
+              <p className="text-[#5a6a60] leading-relaxed text-sm sm:text-base font-medium">
+                {program.overview}
+              </p>
+            </div>
+
+            {/* Section 2: Eligibility for Admission (Highlighted Callout Box) */}
+            <div className="relative overflow-hidden bg-gradient-to-r from-[#e8f5ee]/90 to-white border border-l-4 border-[#006B3C] border-[#006B3C]/15 rounded-3xl p-6 sm:p-8 shadow-md">
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="text-[#006B3C]" size={22} />
+                <h2 className="font-display text-xl font-bold text-[#004D2C]">
+                  Eligibility for Admission
+                </h2>
+              </div>
+              <p className="text-[#1a2e22] text-sm sm:text-base leading-relaxed font-semibold">
+                {program.eligibility}
+              </p>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#006B3C]/5 rounded-bl-full flex items-center justify-center pointer-events-none">
+                <span className="text-[#006B3C]/10 font-display font-bold text-3xl select-none">OK</span>
+              </div>
+            </div>
+
+            {/* Section 3: Class Structure & Medium of Instruction */}
+            <div className="bg-white border border-[#006B3C]/10 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+              <div className="flex items-center gap-3 border-b border-[#006B3C]/10 pb-4">
+                <Calendar className="text-[#006B3C]" size={22} />
+                <h2 className="font-display text-xl font-bold text-[#004D2C]">
+                  Class Structure & Instruction
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="bg-[#e8f5ee]/30 rounded-xl p-4 border border-[#006B3C]/5 text-center">
+                  <span className="text-[10px] font-bold text-[#5a6a60] uppercase tracking-wider block mb-1">Class Schedule</span>
+                  <p className="text-xs sm:text-sm font-bold text-[#004D2C]">{program.classStructure.daysPerWeek}</p>
+                </div>
+                <div className="bg-[#e8f5ee]/30 rounded-xl p-4 border border-[#006B3C]/5 text-center">
+                  <span className="text-[10px] font-bold text-[#5a6a60] uppercase tracking-wider block mb-1">Class Duration</span>
+                  <p className="text-xs sm:text-sm font-bold text-[#004D2C]">{program.classStructure.classHours}</p>
+                </div>
+                <div className="bg-[#e8f5ee]/30 rounded-xl p-4 border border-[#006B3C]/5 text-center">
+                  <span className="text-[10px] font-bold text-[#5a6a60] uppercase tracking-wider block mb-1">Medium of Instruction</span>
+                  <p className="text-xs sm:text-sm font-bold text-[#D4A820] flex items-center justify-center gap-1">
+                    <Languages size={14} />
+                    {program.mediumOfInstruction}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-neutral-50 rounded-xl p-4 border border-neutral-200/50 text-xs sm:text-sm text-[#5a6a60] leading-relaxed font-medium">
+                {program.classStructure.structureDesc}
+              </div>
+            </div>
+
+            {/* Section 4: Highlights */}
+            <div className="bg-white border border-[#006B3C]/10 rounded-3xl p-6 sm:p-8 shadow-sm">
+              <h2 className="font-display text-xl font-bold text-[#004D2C] mb-4">
+                Program Highlights
+              </h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {program.highlights.map((h) => (
+                  <li key={h} className="flex items-center gap-2 text-sm text-[#5a6a60] bg-[#e8f5ee]/40 rounded-xl px-4 py-3 border border-[#006B3C]/10">
+                    <span className="w-5 h-5 rounded-full bg-[#006B3C]/10 text-[#006B3C] flex items-center justify-center font-bold text-xs">✓</span> 
+                    <span className="font-semibold">{h}</span>
+                  </li>
                 ))}
-              </>
+              </ul>
+            </div>
+
+            {/* Section 5: Semester-wise Syllabus Accordion */}
+            {program.syllabus.length > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-[#006B3C]/10 pb-4">
+                  <BookOpen className="text-[#006B3C]" size={22} />
+                  <h2 className="font-display text-2xl font-bold text-[#004D2C]">
+                    Semester-wise Syllabus
+                  </h2>
+                </div>
+                <SyllabusAccordion syllabus={program.syllabus} />
+              </div>
             )}
+            
           </div>
 
-          {/* Sidebar */}
-          <div>
-            <div className="bg-[#022c16] text-white rounded-2xl p-6 mb-6">
-              <h3 className="font-display text-lg font-bold mb-4 text-[#D4A820]">
+          {/* Sidebar Column */}
+          <div className="space-y-6">
+            
+            {/* Fact Sheet */}
+            <div className="bg-[#022c16] text-white rounded-3xl p-6 shadow-md border border-[#006B3C]/10">
+              <h3 className="font-display text-lg font-bold mb-4 text-[#D4A820] flex items-center gap-2">
+                <Building2 size={18} />
                 Quick Facts
               </h3>
-              <dl className="space-y-3 text-sm">
+              <dl className="space-y-3.5 text-xs sm:text-sm">
                 {[
                   ["Program", program.shortName],
-                  ["Duration", program.duration],
-                  ["Credits", `${program.totalCredits}`],
                   ["Faculty", program.faculty],
+                  ["Duration", program.duration],
+                  ["Total Credits", `${program.totalCredits} Credits`],
+                  ["Medium", program.mediumOfInstruction],
                   ["Affiliation", "National University, BD"],
                 ].map(([key, val]) => (
-                  <div key={key} className="flex justify-between border-b border-white/10 pb-2 last:border-0 last:pb-0">
-                    <dt className="text-green-300/60">{key}</dt>
-                    <dd className="text-white font-medium text-right max-w-[60%]">{val}</dd>
+                  <div key={key} className="flex justify-between border-b border-white/10 pb-2.5 last:border-0 last:pb-0">
+                    <dt className="text-green-300/60 font-semibold">{key}</dt>
+                    <dd className="text-white font-bold text-right max-w-[60%]">{val}</dd>
                   </div>
                 ))}
               </dl>
             </div>
 
+            {/* Facilities Support Box */}
+            <div className="bg-white border border-[#006B3C]/10 rounded-3xl p-6 shadow-sm">
+              <h3 className="font-display text-base font-bold text-[#004D2C] mb-4 flex items-center gap-2 border-b border-[#006B3C]/10 pb-3">
+                <Building2 className="text-[#006B3C]" size={16} />
+                Campus Facilities
+              </h3>
+              <ul className="space-y-3">
+                {program.campusFacilities.map((facility, index) => (
+                  <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#5a6a60] font-medium">
+                    <Check size={14} className="text-[#006B3C] mt-0.5 flex-shrink-0" />
+                    <span>{facility}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Help Callout */}
+            <div className="bg-[#fcf8eb] border border-[#D4A820]/30 rounded-3xl p-6 shadow-sm">
+              <h3 className="font-display text-base font-bold text-[#004D2C] mb-2 flex items-center gap-2">
+                <PhoneCall className="text-[#D4A820]" size={16} />
+                Need Assistance?
+              </h3>
+              <p className="text-xs text-[#5a6a60] leading-relaxed mb-4 font-medium">
+                Our support desk is available to assist you with registration guidelines, credit transfer, and curriculum details.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#006B3C] hover:text-[#004D2C] hover:gap-2.5 transition-all"
+              >
+                Contact Admissions Desk →
+              </Link>
+            </div>
+
+            {/* Apply Action Card */}
             <Link
               href="/admissions"
-              className="block text-center w-full px-6 py-3.5 bg-[#C41E1E] text-white font-bold rounded-xl hover:bg-[#9B1515] transition-colors shadow-md"
+              className="block text-center w-full px-6 py-4 bg-[#C41E1E] text-white font-bold rounded-2xl hover:bg-[#9B1515] transition-all duration-300 hover:scale-[1.02] shadow-lg border-none"
             >
-              Apply for {program.shortName}
+              Apply for {program.shortName} Admission
             </Link>
+            
           </div>
+          
         </div>
       </div>
     </div>
