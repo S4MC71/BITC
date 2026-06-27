@@ -82,8 +82,7 @@ export default function ImageSlider() {
 
         {/* Slider */}
         <div
-          className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#006B3C]/10"
-          style={{ aspectRatio: "16/7" }}
+          className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-[#006B3C]/10 aspect-[4/3] md:aspect-[16/7]"
           onMouseEnter={() => setIsPlaying(false)}
           onMouseLeave={() => setIsPlaying(true)}
         >
@@ -91,22 +90,45 @@ export default function ImageSlider() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={current}
-              className="absolute inset-0"
+              className="absolute inset-0 cursor-pointer select-none touch-pan-y"
               initial={{ opacity: 0, x: direction * 80 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: direction * -80 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(e, info) => {
+                const threshold = 50;
+                if (info.offset.x < -threshold) {
+                  setIsPlaying(false);
+                  goNext();
+                } else if (info.offset.x > threshold) {
+                  setIsPlaying(false);
+                  goPrev();
+                }
+              }}
+              onClick={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                setIsPlaying(false);
+                if (x < rect.width / 2) {
+                  goPrev();
+                } else {
+                  goNext();
+                }
+              }}
             >
               <Image
                 src={slides[current].src}
                 alt={slides[current].alt}
                 fill
-                className="object-cover"
+                className="object-cover pointer-events-none"
                 sizes="(max-width: 768px) 100vw, 1280px"
                 priority={current === 0}
               />
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#011a0e]/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#011a0e]/50 via-transparent to-transparent pointer-events-none" />
             </motion.div>
           </AnimatePresence>
 
@@ -116,32 +138,32 @@ export default function ImageSlider() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
-            className="absolute bottom-5 left-5 flex items-center gap-2"
+            className="absolute bottom-3 left-3 md:bottom-5 md:left-5 flex items-center gap-2 pointer-events-none z-30"
           >
-            <div className="bg-[#011a0e]/70 backdrop-blur-sm rounded-xl px-4 py-2 flex items-center gap-2 border border-white/10">
-              <Camera size={14} className="text-[#D4A820]" />
-              <span className="text-white text-sm font-medium">{slides[current].caption}</span>
+            <div className="bg-[#011a0e]/50 backdrop-blur-sm rounded-lg md:rounded-xl px-2.5 py-1 md:px-4 md:py-2 flex items-center gap-1.5 md:gap-2 border border-white/10 select-none">
+              <Camera className="text-[#D4A820] w-3 h-3 md:w-3.5 md:h-3.5" />
+              <span className="text-white text-[10px] md:text-sm font-medium">{slides[current].caption}</span>
             </div>
           </motion.div>
 
           {/* Slide counter */}
-          <div className="absolute top-4 right-4 bg-[#011a0e]/70 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
-            <span className="text-[#F0D060] text-xs font-bold">
+          <div className="absolute top-3 right-3 md:top-4 md:right-4 bg-[#011a0e]/50 backdrop-blur-sm rounded-lg px-2 py-1 md:px-3 md:py-1.5 border border-white/10 z-30 hidden md:block select-none pointer-events-none">
+            <span className="text-[#F0D060] text-[10px] md:text-xs font-bold">
               {current + 1} / {slides.length}
             </span>
           </div>
 
           {/* Arrow buttons */}
           <button
-            onClick={() => { setIsPlaying(false); goPrev(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-[#011a0e]/70 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-[#D4A820] hover:border-[#D4A820] transition-all duration-200 shadow-lg"
+            onClick={(e) => { e.stopPropagation(); setIsPlaying(false); goPrev(); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-[#011a0e]/70 backdrop-blur-sm border border-white/20 hidden md:flex items-center justify-center text-white hover:bg-[#D4A820] hover:border-[#D4A820] transition-all duration-200 shadow-lg z-30"
             aria-label="Previous slide"
           >
             <ChevronLeft size={20} />
           </button>
           <button
-            onClick={() => { setIsPlaying(false); goNext(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-[#011a0e]/70 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-[#D4A820] hover:border-[#D4A820] transition-all duration-200 shadow-lg"
+            onClick={(e) => { e.stopPropagation(); setIsPlaying(false); goNext(); }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-[#011a0e]/70 backdrop-blur-sm border border-white/20 hidden md:flex items-center justify-center text-white hover:bg-[#D4A820] hover:border-[#D4A820] transition-all duration-200 shadow-lg z-30"
             aria-label="Next slide"
           >
             <ChevronRight size={20} />
