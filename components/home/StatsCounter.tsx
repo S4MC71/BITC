@@ -18,7 +18,7 @@ const stats = [
     suffix: "+",
     label: "Proud Graduates",
     description: "Alumni working across industries",
-    color: "#D4A820",
+    color: "#D4A820", // Gold
   },
   {
     icon: Users,
@@ -26,7 +26,7 @@ const stats = [
     suffix: "+",
     label: "Expert Faculty",
     description: "PhD holders & industry experts",
-    color: "#006B3C",
+    color: "#F0D060", // Light Gold
   },
   {
     icon: BookOpen,
@@ -34,7 +34,7 @@ const stats = [
     suffix: "",
     label: "Academic Programs",
     description: "Nationally recognized degrees",
-    color: "#F0D060",
+    color: "#D4A820", // Gold
   },
   {
     icon: Building2,
@@ -42,7 +42,7 @@ const stats = [
     suffix: "+",
     label: "Student Clubs",
     description: "Cultural, sports & tech activities",
-    color: "#B8912A",
+    color: "#F0D060", // Light Gold
   },
   {
     icon: Trophy,
@@ -50,7 +50,7 @@ const stats = [
     suffix: "+",
     label: "Years of Excellence",
     description: "Serving students since 2003",
-    color: "#D4A820",
+    color: "#D4A820", // Gold
   },
   {
     icon: Star,
@@ -58,7 +58,7 @@ const stats = [
     suffix: "%",
     label: "Student Satisfaction",
     description: "Based on annual survey 2024",
-    color: "#006B3C",
+    color: "#F0D060", // Light Gold
   },
 ];
 
@@ -127,7 +127,7 @@ export default function StatsCounter() {
 
               {/* Label */}
               <div className="font-semibold text-white text-sm mb-1">{label}</div>
-              <div className="text-green-400/60 text-xs leading-relaxed">{description}</div>
+              <div className="text-green-200/85 text-xs leading-relaxed font-medium">{description}</div>
 
               {/* Glow on hover */}
               <div
