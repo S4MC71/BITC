@@ -5,7 +5,7 @@ import { CheckCircle2, Award, Users, BookOpen } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const achievements = [
-  "National University–affiliated since 2003",
+  "National University–affiliated since 2012",
   "Consistently ranked among top colleges in the region",
   "100% pass rate in national examinations (2023–24)",
   "Dedicated placement cell with industry tie-ups",
@@ -29,7 +29,7 @@ const highlights = [
   {
     icon: BookOpen,
     label: "5 Programs",
-    sub: "BBA, CSE, LLB, MBA, M.Ed",
+    sub: "BBA, CSE, LLB, MBA, B.Ed",
     color: "#004D2C",
   },
 ];
@@ -53,7 +53,7 @@ export default function AboutSnapshot() {
             />
 
             <p className="text-[#5a6a60] leading-relaxed mb-6">
-              Established in 2003 and affiliated with National University, Bangladesh,
+              Established in 2012 and affiliated with National University, Bangladesh,
               BITC has grown into one of the most respected higher education institutions
               in the region. With over two decades of academic tradition, we combine
               quality education with holistic development.

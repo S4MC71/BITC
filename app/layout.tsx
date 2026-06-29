@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | BITC",
   },
   description:
-    "Barisal Information Technology College (BITC) is a premier National University-affiliated institution offering BBA, CSE, LLB, MBA, and M.Ed programs.",
+    "Barisal Information Technology College (BITC) is a premier National University-affiliated institution offering BBA, CSE, LLB, MBA, and B.Ed programs.",
   keywords: [
     "BITC",
     "Barisal Information Technology College",

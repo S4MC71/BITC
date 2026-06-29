@@ -104,7 +104,7 @@ export default function HeroSection() {
               className="text-green-200 text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 max-w-xl"
             >
               Barisal Information Technology College — offering world-class BBA,
-              CSE, LLB, MBA, and M.Ed programs with experienced faculty, modern
+              CSE, LLB, MBA, and B.Ed programs with experienced faculty, modern
               facilities, and a vibrant campus culture.
             </motion.p>
 
@@ -188,13 +188,10 @@ export default function HeroSection() {
                   priority
                 />
                 {/* Overlay badge */}
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4">
-                  <div className="bg-[#011a0e]/80 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 border border-[#D4A820]/30">
-                    <p className="text-[#F0D060] text-[9px] sm:text-xs font-semibold tracking-wider uppercase">
-                      Barisal Information Technology College
-                    </p>
-                    <p className="text-green-300/80 text-[8px] sm:text-xs mt-0.5">
-                      Established 2003 · Barisal, Bangladesh
+                <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4">
+                  <div className="bg-[#011a0e]/85 backdrop-blur-sm rounded-xl px-3 py-1.5 border border-[#D4A820]/25">
+                    <p className="text-green-200 text-[8px] sm:text-xs font-semibold">
+                      Established 2012 · Barisal, Bangladesh
                     </p>
                   </div>
                 </div>

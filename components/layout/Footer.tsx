@@ -30,7 +30,7 @@ const programs = [
   { label: "CSE — Computer Science", href: "/academics/cse" },
   { label: "LLB — Laws", href: "/academics/llb" },
   { label: "MBA — Business Admin", href: "/academics/mba" },
-  { label: "M.Ed — Education", href: "/academics/med" },
+  { label: "B.Ed — Education", href: "/academics/bed" },
 ];
 
 export default function Footer() {

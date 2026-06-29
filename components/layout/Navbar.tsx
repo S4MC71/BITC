@@ -34,7 +34,7 @@ const navItems: NavItem[] = [
       { label: "CSE Program", href: "/academics/cse" },
       { label: "LLB Program", href: "/academics/llb" },
       { label: "MBA Program", href: "/academics/mba" },
-      { label: "M.Ed Program", href: "/academics/med" },
+      { label: "B.Ed Program", href: "/academics/bed" },
       { label: "Faculty Members", href: "/academics#faculty" },
       { label: "Academic Calendar", href: "/academics#calendar" },
     ],
@@ -50,16 +50,6 @@ const navItems: NavItem[] = [
   },
   { label: "Campus Life", href: "/campus-life" },
   { label: "Alumni", href: "/alumni" },
-  {
-    label: "Portals",
-    href: "#",
-    dropdown: [
-      { label: "Student Portal (NU)", href: "https://www.nu.ac.bd/", },
-      { label: "Result Check", href: "http://results.nu.ac.bd/", },
-      { label: "Admission Portal", href: "http://admissions.nu.ac.bd/", },
-      { label: "Faculty Portal", href: "#" },
-    ],
-  },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -151,23 +141,23 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={dropdownRef}>
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 shadow-md">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
+              <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 shadow-md">
                 <Image
                   src="/images/Logo.png"
                   alt="BITC Logo"
-                  width={40}
-                  height={40}
+                  width={44}
+                  height={44}
                   className="w-full h-full object-contain"
                   priority
                 />
               </div>
               <div className="flex flex-col">
-                <div className="font-display text-sm sm:text-lg font-bold leading-tight"
+                <div className="font-display text-lg font-extrabold leading-tight"
                   style={{ background: "linear-gradient(90deg, #006B3C, #D4A820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                   BITC
                 </div>
-                <div className="text-[8px] sm:text-[10px] text-[#5a6a60] font-medium leading-tight tracking-wide">
+                <div className="text-[11px] text-[#3a4a3f] font-semibold leading-tight tracking-wide">
                   Barisal Information Technology College
                 </div>
               </div>

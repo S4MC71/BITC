@@ -49,7 +49,7 @@ const stats = [
     target: 22,
     suffix: "+",
     label: "Years of Excellence",
-    description: "Serving students since 2003",
+    description: "Serving students since 2012",
     color: "#D4A820", // Gold
   },
   {

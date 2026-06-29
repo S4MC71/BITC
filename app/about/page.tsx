@@ -5,7 +5,7 @@ import { Eye, Target, Heart, Shield, Clock, Award } from "lucide-react";
 export const metadata: Metadata = {
   title: "About BITC — Vision, Mission, Values & History",
   description:
-    "Learn about Barisal Information Technology College (BITC) — our founding story, vision, mission, core values, and governing body.",
+    "Learn about Barisal Information Technology College (BITC) — our founding story, vision, mission, core values, and Advisory Board.",
 };
 
 const values = [
@@ -18,13 +18,13 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2003", event: "BITC founded and affiliated with National University, Bangladesh. First batch of BBA students enrolled." },
-  { year: "2006", event: "Introduction of LLB program. Library expanded to 10,000+ volumes." },
-  { year: "2009", event: "CSE program launched. First Computer Lab inaugurated with 50 workstations." },
-  { year: "2012", event: "MBA program introduced. Student enrollment surpasses 1,000." },
-  { year: "2016", event: "M.Ed program launched for practising educators. Alumni Association formally established." },
-  { year: "2019", event: "Second Computer Lab inaugurated. Campus-wide Wi-Fi deployed." },
-  { year: "2022", event: "BITC celebrates its first 5,000+ cumulative graduates. New Digital Library section opened." },
+  { year: "2012", event: "BITC founded and affiliated with National University, Bangladesh. First batch of BBA students enrolled." },
+  { year: "2013", event: "Introduction of LLB program. Library expanded to 10,000+ volumes." },
+  { year: "2015", event: "CSE program launched. First Computer Lab inaugurated with 50 workstations." },
+  { year: "2018", event: "MBA program introduced. Student enrollment surpasses 1,000." },
+  { year: "2019", event: "B.Ed program launched for practising educators. Alumni Association formally established." },
+  { year: "2022", event: "Second Computer Lab inaugurated. Campus-wide Wi-Fi deployed." },
+  { year: "2024", event: "BITC celebrates its first 5,000+ cumulative graduates. New Digital Library section opened." },
   { year: "2025", event: "BITC wins 'Best Private College of the Year' at the National Education Summit 2025." },
 ];
 
@@ -128,20 +128,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Governing Body — darkest green */}
+      {/* Advisory Board — darkest green */}
       <section className="py-20 bg-[#022c16] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Administration"
-            title="Governing Body"
+            title="Advisory Board"
             subtitle="Dedicated leaders steering BITC toward its mission of excellence."
             light
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { name: "Mr. Alhaj Shamsul Haq", role: "Chairman, Governing Body", initials: "SH", color: "#D4A820" },
+              { name: "Mr. Alhaj Shamsul Haq", role: "Chairman, Advisory Board", initials: "SH", color: "#D4A820" },
               { name: "Prof. Dr. Abdur Rahim", role: "Principal", initials: "AR", color: "#006B3C" },
-              { name: "Mr. Kamal Uddin", role: "Secretary, Governing Body", initials: "KU", color: "#004D2C" },
+              { name: "Mr. Kamal Uddin", role: "Secretary, Advisory Board", initials: "KU", color: "#004D2C" },
               { name: "Dr. Nazmul Hossain", role: "Vice-Principal (Academic)", initials: "NH", color: "#B8912A" },
               { name: "Ms. Farida Yasmin", role: "Registrar", initials: "FY", color: "#C41E1E" },
               { name: "Mr. Rafiq Ahmed", role: "Controller of Examinations", initials: "RA", color: "#006B3C" },

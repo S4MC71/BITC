@@ -390,9 +390,9 @@ export const programs: Program[] = [
     ],
   },
   {
-    id: "med",
-    name: "Master of Education",
-    shortName: "M.Ed",
+    id: "bed",
+    name: "Bachelor of Education",
+    shortName: "B.Ed",
     faculty: "Education",
     duration: "1 Year (2 Semesters)",
     totalCredits: 36,
@@ -400,8 +400,8 @@ export const programs: Program[] = [
       "Designed for practising teachers and education professionals to advance their pedagogical skills and research.",
     icon: "BookOpen",
     highlights: ["Classroom Research", "Curriculum Design", "Educational Psychology", "Teaching Practicum"],
-    overview: "The Master of Education (M.Ed) program is a highly specialized postgraduate degree designed for educators, school administrators, and education professionals. It aims to develop advanced teaching pedagogies, modern curriculum design strategies, and educational psychology insights, fostering positive leadership across educational institutions.",
-    eligibility: "Candidates must hold a Bachelor of Education (B.Ed) or equivalent degree with a minimum 2nd Class/Division from a recognized university.",
+    overview: "The Bachelor of Education (B.Ed) program is a highly specialized degree designed for educators, school administrators, and education professionals. It aims to develop advanced teaching pedagogies, modern curriculum design strategies, and educational psychology insights, fostering positive leadership across educational institutions.",
+    eligibility: "Candidates must hold a Bachelor's degree or equivalent degree with a minimum 2nd Class/Division from a recognized university.",
     classStructure: {
       daysPerWeek: "2 Days (Friday & Saturday)",
       totalClassDays: "15 Weeks per Semester",
@@ -420,21 +420,21 @@ export const programs: Program[] = [
       {
         semester: 1,
         courses: [
-          { code: "MED-101", name: "Advanced Educational Psychology", credits: 4 },
-          { code: "MED-102", name: "Philosophy & Sociology of Education", credits: 4 },
-          { code: "MED-103", name: "Educational Research & Statistics", credits: 4 },
-          { code: "MED-104", name: "Curriculum Studies & Instruction", credits: 4 },
-          { code: "MED-105", name: "Educational Technology", credits: 3 },
+          { code: "BED-101", name: "Advanced Educational Psychology", credits: 4 },
+          { code: "BED-102", name: "Philosophy & Sociology of Education", credits: 4 },
+          { code: "BED-103", name: "Educational Research & Statistics", credits: 4 },
+          { code: "BED-104", name: "Curriculum Studies & Instruction", credits: 4 },
+          { code: "BED-105", name: "Educational Technology", credits: 3 },
         ]
       },
       {
         semester: 2,
         courses: [
-          { code: "MED-201", name: "Teacher Education Policy & Development", credits: 4 },
-          { code: "MED-202", name: "Educational Measurement & Evaluation", credits: 4 },
-          { code: "MED-203", name: "Special & Inclusive Education", credits: 3 },
-          { code: "MED-204", name: "Leadership & Management in Education", credits: 3 },
-          { code: "MED-205", name: "Teaching Practicum & Action Research", credits: 3 },
+          { code: "BED-201", name: "Teacher Education Policy & Development", credits: 4 },
+          { code: "BED-202", name: "Educational Measurement & Evaluation", credits: 4 },
+          { code: "BED-203", name: "Special & Inclusive Education", credits: 3 },
+          { code: "BED-204", name: "Leadership & Management in Education", credits: 3 },
+          { code: "BED-205", name: "Teaching Practicum & Action Research", credits: 3 },
         ]
       }
     ],

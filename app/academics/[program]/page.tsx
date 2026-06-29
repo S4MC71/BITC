@@ -11,10 +11,22 @@ import {
   Languages,
   BookOpenCheck,
   Building2,
-  PhoneCall
+  PhoneCall,
+  Briefcase,
+  Monitor,
+  Scale,
+  GraduationCap
 } from "lucide-react";
 import { programs } from "@/data/programs";
 import SyllabusAccordion from "./SyllabusAccordion";
+
+const programIconMap: Record<string, any> = {
+  Briefcase: Briefcase,
+  Monitor: Monitor,
+  Scale: Scale,
+  BookOpen: BookOpen,
+  GraduationCap: GraduationCap,
+};
 
 interface Props {
   params: Promise<{ program: string }>;
@@ -53,7 +65,12 @@ export default async function ProgramPage({ params }: Props) {
           >
             <ArrowLeft size={16} /> Back to Academics
           </Link>
-          <div className="text-5xl mb-4">{program.icon}</div>
+          <div className="text-[#F0D060] mb-4">
+            {(() => {
+              const IconComponent = programIconMap[program.icon] || GraduationCap;
+              return <IconComponent size={44} className="stroke-[1.8]" />;
+            })()}
+          </div>
           <h1 className="font-display text-4xl sm:text-5xl font-bold mb-3">
             {program.shortName}
           </h1>
@@ -151,7 +168,9 @@ export default async function ProgramPage({ params }: Props) {
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {program.highlights.map((h) => (
                   <li key={h} className="flex items-center gap-2 text-sm text-[#5a6a60] bg-[#e8f5ee]/40 rounded-xl px-4 py-3 border border-[#006B3C]/10">
-                    <span className="w-5 h-5 rounded-full bg-[#006B3C]/10 text-[#006B3C] flex items-center justify-center font-bold text-xs">✓</span> 
+                    <span className="w-5 h-5 rounded-full bg-[#006B3C]/10 text-[#006B3C] flex items-center justify-center font-bold text-xs">
+                      <Check size={12} strokeWidth={3} />
+                    </span> 
                     <span className="font-semibold">{h}</span>
                   </li>
                 ))}

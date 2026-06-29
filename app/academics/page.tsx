@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { 
+  ArrowRight, 
+  GraduationCap, 
+  Briefcase, 
+  Monitor, 
+  Scale, 
+  BookOpen, 
+  Clock, 
+  ClipboardList,
+  type LucideIcon 
+} from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { programs, programsByFaculty } from "@/data/programs";
 import { facultyMembers } from "@/data/faculty";
@@ -8,14 +18,22 @@ import { facultyMembers } from "@/data/faculty";
 export const metadata: Metadata = {
   title: "Academics — Programs, Faculty & Calendar",
   description:
-    "Explore BITC's academic programs including BBA, CSE, LLB, MBA, and M.Ed. View faculty profiles, academic calendar, and syllabus details.",
+    "Explore BITC's academic programs including BBA, CSE, LLB, MBA, and B.Ed. View faculty profiles, academic calendar, and syllabus details.",
 };
 
-const facultyIcons: Record<string, string> = {
-  "Business Studies": "💼",
-  "Science & IT": "💻",
-  "Law": "⚖️",
-  "Education": "📚",
+const facultyIconMap: Record<string, LucideIcon> = {
+  "Business Studies": Briefcase,
+  "Science & IT": Monitor,
+  "Law": Scale,
+  "Education": BookOpen,
+};
+
+const programIconMap: Record<string, LucideIcon> = {
+  Briefcase: Briefcase,
+  Monitor: Monitor,
+  Scale: Scale,
+  BookOpen: BookOpen,
+  GraduationCap: GraduationCap,
 };
 
 export default function AcademicsPage() {
@@ -50,8 +68,7 @@ export default function AcademicsPage() {
 
           {Object.entries(programsByFaculty).map(([faculty, progs]) => (
             <div key={faculty} className="mb-16">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-2xl">{facultyIcons[faculty] || "🎓"}</span>
+              <div className="mb-6">
                 <h2 className="font-display text-2xl font-bold text-[#004D2C]">
                   Faculty of {faculty}
                 </h2>
@@ -69,14 +86,25 @@ export default function AcademicsPage() {
                         </div>
                         <div className="text-sm text-[#5a6a60]">{program.name}</div>
                       </div>
-                      <span className="text-3xl">{program.icon}</span>
+                      <span className="text-[#006B3C]">
+                        {(() => {
+                          const IconComponent = programIconMap[program.icon] || GraduationCap;
+                          return <IconComponent size={30} className="stroke-[1.8]" />;
+                        })()}
+                      </span>
                     </div>
                     <p className="text-sm text-[#5a6a60] leading-relaxed mb-4">
                       {program.description}
                     </p>
                     <div className="flex items-center gap-4 mb-4 text-xs text-[#5a6a60]">
-                      <span>⏱ {program.duration}</span>
-                      <span>📋 {program.totalCredits} Credits</span>
+                      <span className="flex items-center gap-1.5 font-medium">
+                        <Clock size={14} className="text-[#006B3C]/80" />
+                        {program.duration}
+                      </span>
+                      <span className="flex items-center gap-1.5 font-medium">
+                        <ClipboardList size={14} className="text-[#006B3C]/80" />
+                        {program.totalCredits} Credits
+                      </span>
                     </div>
                     <Link
                       href={`/academics/${program.id}`}

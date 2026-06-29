@@ -55,12 +55,12 @@ const programDetails = {
       { criteria: "CGPA 2.00 - 2.99 / 2nd Class", admission: "12,000", midTerm: "5,500", final: "5,500", semFee: "11,000", tuition: "1,800 * 24", total: "99,200" },
     ]
   },
-  "M.Ed": {
-    fullName: "Master of Education (M.Ed)",
-    degree: "Masters (1-Year)",
+  "B.Ed": {
+    fullName: "Bachelor of Education (B.Ed)",
+    degree: "Professional (1-Year)",
     duration: "1 Year (2 Semesters)",
     seats: 60,
-    requirement: "B.Ed or Honours degree with minimum 2nd Division, teaching experience preferred",
+    requirement: "Graduation or Honours degree with minimum 2nd Division, teaching experience preferred",
     feeRows: [
       { criteria: "CGPA 3.50+ / 1st Class", admission: "10,000", midTerm: "3,500", final: "3,500", semFee: "7,000", tuition: "N/A", total: "24,000" },
       { criteria: "CGPA 3.00 - 3.49", admission: "10,000", midTerm: "5,000", final: "5,000", semFee: "10,000", tuition: "1,000 * 12", total: "42,000" },
@@ -80,7 +80,7 @@ const steps = [
 
 export default function AdmissionsContent() {
   const [selected, setSelected] = useState("CSE");
-  const programs = ["CSE", "BBA", "LLB", "MBA", "M.Ed"];
+  const programs = ["CSE", "BBA", "LLB", "MBA", "B.Ed"];
 
   const currentProgram = programDetails[selected as keyof typeof programDetails];
   const isUndergrad = selected === "CSE" || selected === "BBA";
@@ -357,10 +357,34 @@ export default function AdmissionsContent() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    // Simulate secure request submission
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
+    try {
+      const data = new FormData();
+      Object.entries(formData).forEach(([key, val]) => {
+        data.append(key, val);
+      });
+      if (imageFile) {
+        data.append("photo", imageFile);
+      }
+
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://api.bitc.edu.bd";
+      const response = await fetch(`${backendUrl}/api/admissions`, {
+        method: "POST",
+        body: data,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit application. Please verify server connectivity.");
+      }
+
+      setSubmitSuccess(true);
+    } catch (err: any) {
+      setErrors((prev) => ({
+        ...prev,
+        submit: err.message || "Something went wrong. Please try again later.",
+      }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -380,14 +404,45 @@ export default function AdmissionsContent() {
           <p className="text-green-200 text-lg max-w-2xl mx-auto mb-8">
             Join a community of over 5,000 alumni. Apply now for Session 2025–26.
           </p>
-          <a
-            href="http://admissions.nu.ac.bd/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#C41E1E] text-white font-bold rounded-xl hover:bg-[#9B1515] transition-colors shadow-lg text-base"
-          >
-            Apply Online via NU Portal <ExternalLink size={16} />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="http://admissions.nu.ac.bd/"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C41E1E] text-white font-bold rounded-xl hover:bg-[#9B1515] transition-colors shadow-lg text-base cursor-pointer"
+            >
+              Apply Online via NU Portal <ExternalLink size={16} />
+            </a>
+            <button
+              onClick={() => {
+                setIsFormOpen(true);
+                setSubmitSuccess(false);
+                setFormData({
+                  program: "CSE",
+                  session: "2025-26",
+                  fullName: "",
+                  phone: "",
+                  dob: "",
+                  email: "",
+                  presentAddress: "",
+                  guardianName: "",
+                  guardianPhone: "",
+                  sscSchool: "",
+                  sscGpa: "",
+                  sscYear: "",
+                  hscCollege: "",
+                  hscGpa: "",
+                  hscYear: "",
+                });
+                setImageFile(null);
+                setImagePreview("");
+                setErrors({});
+              }}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl hover:border-[#D4A820] hover:text-[#F0D060] transition-colors text-base cursor-pointer"
+            >
+              Apply for Admission at BITC
+            </button>
+          </div>
         </div>
       </div>
 
@@ -549,39 +604,7 @@ export default function AdmissionsContent() {
             ))}
           </div>
 
-          {/* BITC Admission Form Trigger CTA */}
-          <div className="mt-12 text-center">
-            <button
-              onClick={() => {
-                setIsFormOpen(true);
-                setSubmitSuccess(false);
-                setFormData({
-                  program: "CSE",
-                  session: "2025-26",
-                  fullName: "",
-                  phone: "",
-                  dob: "",
-                  email: "",
-                  presentAddress: "",
-                  guardianName: "",
-                  guardianPhone: "",
-                  sscSchool: "",
-                  sscGpa: "",
-                  sscYear: "",
-                  hscCollege: "",
-                  hscGpa: "",
-                  hscYear: "",
-                });
-                setImageFile(null);
-                setImagePreview("");
-                setErrors({});
-              }}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#C41E1E] text-white font-bold text-lg rounded-2xl hover:bg-[#9B1515] transition-all duration-300 hover:scale-[1.02] cursor-pointer shadow-xl border-none"
-            >
-              Apply for Admission at BITC
-              <ArrowRight size={20} />
-            </button>
-          </div>
+
         </div>
       </section>
 
@@ -699,7 +722,7 @@ export default function AdmissionsContent() {
                           <option value="BBA">Bachelor of Business Administration (BBA)</option>
                           <option value="LLB">Bachelor of Laws (LLB)</option>
                           <option value="MBA">Master of Business Administration (MBA)</option>
-                          <option value="M.Ed">Master of Education (M.Ed)</option>
+                          <option value="B.Ed">Bachelor of Education (B.Ed)</option>
                         </select>
                       </div>
                       <div>
@@ -1015,21 +1038,26 @@ export default function AdmissionsContent() {
                   </div>
 
                   {/* Submission Action */}
-                  <div className="pt-2 flex items-center justify-end gap-3 flex-shrink-0">
-                    <button
-                      type="button"
-                      onClick={() => setIsFormOpen(false)}
-                      className="px-5 py-3 rounded-xl border border-neutral-300 hover:bg-neutral-100 text-xs font-bold text-[#5a6a60] transition-colors cursor-pointer"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="px-6 py-3 rounded-xl bg-[#006B3C] text-white hover:bg-[#004D2C] transition-colors text-xs font-bold shadow-md cursor-pointer disabled:opacity-50 flex items-center gap-2 border-none"
-                    >
-                      {isSubmitting ? "Submitting securely..." : "Submit Admission Application"}
-                    </button>
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-end gap-3 flex-shrink-0">
+                    {errors.submit && (
+                      <p className="text-[#C41E1E] text-xs font-semibold mr-auto">{errors.submit}</p>
+                    )}
+                    <div className="flex gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setIsFormOpen(false)}
+                        className="px-5 py-3 rounded-xl border border-neutral-300 hover:bg-neutral-100 text-xs font-bold text-[#5a6a60] transition-colors cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="px-6 py-3 rounded-xl bg-[#006B3C] text-white hover:bg-[#004D2C] transition-colors text-xs font-bold shadow-md cursor-pointer disabled:opacity-50 flex items-center gap-2 border-none"
+                      >
+                        {isSubmitting ? "Submitting securely..." : "Submit Admission Application"}
+                      </button>
+                    </div>
                   </div>
 
                 </form>
