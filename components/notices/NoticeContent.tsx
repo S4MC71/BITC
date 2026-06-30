@@ -30,6 +30,7 @@ export default function NoticeContent({ initialNotices }: Props) {
   const [activeCategory, setActiveCategory] = useState<NoticeCategory | "All">("All");
   const [activeDepartment, setActiveDepartment] = useState<NoticeDepartment | "All Departments">("All Departments");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
 
   const filtered = useMemo(() => {
     return initialNotices.filter((n) => {
@@ -267,13 +268,25 @@ export default function NoticeContent({ initialNotices }: Props) {
                       )}
                     </div>
 
-                    <h3 className="font-semibold text-[#004D2C] text-sm leading-snug mb-1">
+                    <h3 className="font-semibold text-[#004D2C] text-sm leading-snug mb-1 break-all">
                       {notice.title}
                     </h3>
 
                     {notice.description && (
-                      <p className="text-xs text-[#5a6a60] leading-relaxed mb-2">
-                        {notice.description}
+                      <p className="text-xs text-[#5a6a60] leading-relaxed mb-2 break-all">
+                        {notice.description.length > 150 ? (
+                          <>
+                            {notice.description.slice(0, 150)}...{" "}
+                            <button
+                              onClick={() => setSelectedNotice(notice)}
+                              className="text-[#006B3C] font-bold hover:text-[#004D2C] hover:underline focus:outline-none cursor-pointer"
+                            >
+                              See More
+                            </button>
+                          </>
+                        ) : (
+                          notice.description
+                        )}
                       </p>
                     )}
 
@@ -409,6 +422,93 @@ export default function NoticeContent({ initialNotices }: Props) {
           </div>
         </aside>
       </div>
+
+      {/* ── Notice Detail Modal Popup ── */}
+      {selectedNotice && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-[#012314]/40 backdrop-blur-sm"
+            onClick={() => setSelectedNotice(null)}
+          />
+          
+          <div className="relative bg-white rounded-3xl border border-[#006B3C]/10 w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 z-10">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[#006B3C]/10 bg-[#f2faf6]">
+              <h4 className="font-bold text-[#004D2C] text-sm tracking-wide uppercase">Notice Details</h4>
+              <button
+                onClick={() => setSelectedNotice(null)}
+                className="p-1.5 rounded-full hover:bg-[#006B3C]/10 text-[#5a6a60] transition-colors"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span
+                  className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-0.5 rounded-full"
+                  style={{ background: "#e8f5ee", color: "#006B3C" }}
+                >
+                  {selectedNotice.category}
+                </span>
+                {selectedNotice.department !== "General" && (
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-0.5 rounded-full"
+                    style={{ background: "#fef9e7", color: "#B8912A" }}
+                  >
+                    {selectedNotice.department}
+                  </span>
+                )}
+                {selectedNotice.isUrgent && (
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-0.5 rounded-full"
+                    style={{ background: "#fef2f2", color: "#C41E1E" }}
+                  >
+                    🔥 Urgent
+                  </span>
+                )}
+              </div>
+
+              <h3 className="font-bold text-[#004D2C] text-base leading-snug break-all">
+                {selectedNotice.title}
+              </h3>
+
+              {selectedNotice.description && (
+                <p className="text-xs text-[#5a6a60] leading-relaxed break-all whitespace-pre-line bg-[#f2faf6]/40 p-4 rounded-xl border border-[#006B3C]/5">
+                  {selectedNotice.description}
+                </p>
+              )}
+
+              <div className="flex items-center justify-between text-xs pt-2 border-t border-[#006B3C]/5">
+                <span className="text-[#5a6a60]/60">Published on:</span>
+                <span className="font-semibold text-[#5a6a60]">
+                  {new Date(selectedNotice.date).toLocaleDateString("en-BD", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 bg-[#f2faf6] border-t border-[#006B3C]/10 flex justify-end gap-3">
+              {selectedNotice.fileUrl && (
+                <a
+                  href={selectedNotice.fileUrl}
+                  className="flex items-center gap-1.5 px-4 py-2 bg-[#D4A820] hover:bg-[#B8912A] text-white text-xs font-bold rounded-xl shadow-sm transition-colors"
+                >
+                  <Download size={14} /> Download Document
+                </a>
+              )}
+              <button
+                onClick={() => setSelectedNotice(null)}
+                className="px-4 py-2 border border-[#006B3C]/20 hover:bg-[#006B3C]/5 text-[#5a6a60] text-xs font-bold rounded-xl transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
